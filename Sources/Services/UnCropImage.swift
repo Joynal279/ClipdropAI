@@ -10,7 +10,12 @@ import Alamofire
 
 @available(iOS 14.0, *)
 extension ClipDrop {
-    
+    ///`1` IMAGE_FILE`: - maximum resolution 10 megapixels (JPG OR PNG, Web File)
+    ///max file size 30 Mb
+    ///_OPTIONAL: `extend_left` maximum 2k, defaults 0`
+    ///OPTIONAL: `extend_right` maximum 2k, defaults 0`
+    ///OPTIONAL: `extend_up` maximum 2k, defaults 0`
+    ///OPTIONAL: `extend_bottom` maximum 2k, defaults 0`
     func unCropImageRequest(apiKey: String, image: UIImage, leftExtend: String = "0", topExtend: String = "0", rightExtend: String = "0", bottomExtend: String = "0", completion: @escaping (_ success: Bool, _ message: String?, _ imageData: UIImage?) -> Void) {
         
         let imageData = image.jpegData(compressionQuality: 0.9)!
