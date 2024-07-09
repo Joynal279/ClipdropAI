@@ -40,7 +40,7 @@ public class ClipDrop {
                 )
                 multipartFormData.append(textData!, withName: "text_prompt")
             },
-            to:"https://clipdrop-api.co/text-inpainting/v1",
+            to: "https://clipdrop-api.co/text-inpainting/v1",
             headers: headers
         )
         .validate()
