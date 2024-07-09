@@ -20,7 +20,10 @@ let package = Package(
         .target(
             name: "ClipdropAI",
             dependencies: ["Alamofire"],
-            path: "Sources"),
+            path: "Sources", 
+            resources: [
+                .process("Resources/Media.xcassets")
+            ]),
         .testTarget(
             name: "ClipdropAITests",
             dependencies: ["ClipdropAI"]),
