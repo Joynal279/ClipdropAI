@@ -44,23 +44,19 @@ public class ClipDrop {
         )
         .validate()
         .responseData(queue: .global()) { response in
-            
-            Task { @MainActor in
-                switch response.result {
-                case .success: do {
-                    if let dataSafe = response.data, let imageReceived = UIImage.init(data: dataSafe) {
-                        completion(true, String.init(data: dataSafe, encoding: .utf8), imageReceived)
-                    } else {
-                        if let dataSafe = response.data {
-                            completion(false, String.init(data: dataSafe, encoding: .utf8), nil)
-                        }
-                    }
-                }
-                case let .failure(error):
-                    Text(error.localizedDescription)
+            switch response.result {
+            case .success: do {
+                if let dataSafe = response.data, let imageReceived = UIImage.init(data: dataSafe) {
+                    completion(true, String.init(data: dataSafe, encoding: .utf8), imageReceived)
+                } else {
                     if let dataSafe = response.data {
                         completion(false, String.init(data: dataSafe, encoding: .utf8), nil)
                     }
+                }
+            }
+            case let .failure(error):
+                if let dataSafe = response.data {
+                    completion(false, String.init(data: dataSafe, encoding: .utf8), nil)
                 }
             }
         }
