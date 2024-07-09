@@ -15,6 +15,12 @@ public class ClipDrop {
     
     private init() {}
     
+    ///`1` IMAGE_FILE: - maximum resolution 10 megapixels (JPG OR PNG)
+    ///max file size 30 Mb
+    ///2. MASK_FILE: - same as originale image_file (PNG)`
+    ///mask_file should be BLACK & WHITE  with no gray color. Black color will keep pixels & white will clean up
+    ///`text_prompt` text field describing what you want to put in the mask image
+    ///for get better result mask size will be big.
     public func paintImageRequest(apiKey: String, image: UIImage, mask: UIImage, text: String, completion: @escaping (_ success: Bool, _ message: String?, _ imageData: UIImage?) -> Void) {
         let imageData = image.jpegData(compressionQuality: 0.9)!
         let maskData = mask.jpegData(compressionQuality: 0.9)!
