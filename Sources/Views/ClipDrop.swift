@@ -8,6 +8,7 @@
 import SwiftUI
 import Alamofire
 
+@available(iOS 14.0, *)
 public class ClipDrop {
     
     public static let shared = ClipDrop()

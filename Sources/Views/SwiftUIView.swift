@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-@available(iOS 13.0, *)
+@available(iOS 14.0, *)
 public struct SwiftUIView: View {
     public init() {}
     public var body: some View {
@@ -22,7 +22,7 @@ public struct SwiftUIView: View {
 }
 
 //MARK: - PREVIEW
-@available(iOS 13.0, *)
+@available(iOS 14.0, *)
 #Preview {
     SwiftUIView()
 }
