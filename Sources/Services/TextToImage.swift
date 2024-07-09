@@ -13,7 +13,7 @@ extension ClipDrop {
     ///PROMPT required for content generate
     ///where Max length will be 1000 characteres
     ///Response image will be 1024*1024 pixels dimensions*
-    public func sketchToImageRequest(apiKey: String, text: String, completion: @escaping (_ success: Bool, _ message: String?, _ imageData: UIImage?) -> Void) {
+    public func textToImageRequest(apiKey: String, text: String, completion: @escaping (_ success: Bool, _ message: String?, _ imageData: UIImage?) -> Void) {
         
         let textData = text.data(using: .utf8)
         
