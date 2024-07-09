@@ -10,6 +10,9 @@ import Alamofire
 
 @available(iOS 14.0, *)
 extension ClipDrop {
+    ///`1` IMAGE_FILE: - maximum resolution 25 megapixels (JPEG , WEBFILE, OR PNG)
+    ///Max file size 30 Mb
+    ///with maximum width & height of 1024 pixels
     func removeBGRequest(apiKey: String, image: UIImage, completion: @escaping (_ success: Bool, _ message: String?, _ imageData: UIImage?) -> Void) {
         
         let imageData = image.jpegData(compressionQuality: 0.9)!
