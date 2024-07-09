@@ -12,6 +12,7 @@ let package = Package(
             targets: ["ClipdropAI"]),
     ],
     dependencies: [
+        .package(url: "https://github.com/Joynal279/ClipdropAI.git", from: "1.0.0"),
         .package(url: "https://github.com/Alamofire/Alamofire.git", .upToNextMajor(from: "5.9.1"))
     ],
     targets: [
@@ -20,7 +21,7 @@ let package = Package(
         .target(
             name: "ClipdropAI",
             dependencies: ["Alamofire"],
-            path: "Sources", 
+            path: "Sources",
             resources: [
                 .process("Resources/Media.xcassets")
             ]),
