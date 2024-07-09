@@ -11,6 +11,11 @@ import Alamofire
 @available(iOS 14.0, *)
 extension ClipDrop {
     
+    ///IMAGE_FILE: - maximum resolution 16 megapixels (JPG OR PNG)
+    ///max file size 30 Mb
+    ///MASK_FILE: - same as originale image_file (PNG)
+    ///mask_file should be BLACK & WHITE  with no gray color. Black color will keep pixels & white will clean up
+    ///for get better result mask size will be big.
     func cleanUpImageRequest(apiKey: String, image: UIImage, mask: UIImage, completion: @escaping (_ success: Bool, _ message: String?, _ imageData: UIImage?) -> Void) {
         
         let imageData = image.jpegData(compressionQuality: 0.9)!
