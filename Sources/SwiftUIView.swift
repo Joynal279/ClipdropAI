@@ -8,12 +8,14 @@
 import SwiftUI
 
 @available(iOS 13.0, *)
-struct SwiftUIView: View {
-    var body: some View {
+public struct SwiftUIView: View {
+    public init() {}
+    public var body: some View {
         Text("Clip Drop API Package!")
     }
 }
 
+//MARK: - PREVIEW
 @available(iOS 13.0, *)
 #Preview {
     SwiftUIView()
