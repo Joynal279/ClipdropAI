@@ -11,11 +11,16 @@ let package = Package(
             name: "ClipdropAI",
             targets: ["ClipdropAI"]),
     ],
+    dependencies: [
+        .package(url: "https://github.com/Alamofire/Alamofire.git", .upToNextMajor(from: "5.9.1"))
+    ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "ClipdropAI"),
+            name: "ClipdropAI",
+            dependencies: ["Alamofire"],
+            path: "Sources"),
         .testTarget(
             name: "ClipdropAITests",
             dependencies: ["ClipdropAI"]),
