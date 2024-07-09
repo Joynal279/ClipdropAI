@@ -15,7 +15,7 @@ public class ClipDrop {
     
     private init() {}
     
-    public func paintImageRequest(apiKey: String, image: UIImage, mask: UIImage, text: String, completion: @escaping (Bool, String?, UIImage?) -> Void) {
+    public func paintImageRequest(apiKey: String, image: UIImage, mask: UIImage, text: String, completion: @escaping (_ success: Bool, _ message: String?, _ imageData: UIImage?) -> Void) {
         let imageData = image.jpegData(compressionQuality: 0.9)!
         let maskData = mask.jpegData(compressionQuality: 0.9)!
         let textData = text.data(using: .utf8)
@@ -55,7 +55,7 @@ public class ClipDrop {
                     }
                 }
             }
-            case let .failure(error):
+            case .failure(_):
                 if let dataSafe = response.data {
                     completion(false, String.init(data: dataSafe, encoding: .utf8), nil)
                 }
