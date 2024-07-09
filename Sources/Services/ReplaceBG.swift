@@ -10,7 +10,9 @@ import Alamofire
 
 @available(iOS 14.0, *)
 extension ClipDrop {
-    
+    ///`1` IMAGE_FILE: - (JPG , WEBP FILE, OR PNG)
+    ///with maximum width & height of 2048 pixels
+    ///Max file size 20 Mb
     public func replaceBGRequest(apiKey: String, image: UIImage, text: String, completion: @escaping (_ success: Bool, _ message: String?, _ imageData: UIImage?) -> Void) {
         let imageData = image.jpegData(compressionQuality: 0.9)!
         let textData = text.data(using: .utf8)

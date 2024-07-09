@@ -10,7 +10,10 @@ import Alamofire
 
 @available(iOS 14.0, *)
 extension ClipDrop {
-    
+    ///`1` IMAGE_FILE: - (JPEG , WEBFILE, OR PNG)
+    ///with maximum width & height of 1024 pixels
+    ///PROMPT required for content generate
+    ///where Max length will be 5000 characteres
     public func sketchToImageRequest(apiKey: String, image: UIImage, text: String, completion: @escaping (_ success: Bool, _ message: String?, _ imageData: UIImage?) -> Void) {
         let imageData = image.jpegData(compressionQuality: 0.9)!
         let textData = text.data(using: .utf8)
