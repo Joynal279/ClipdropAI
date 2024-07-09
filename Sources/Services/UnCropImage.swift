@@ -16,7 +16,7 @@ extension ClipDrop {
     ///OPTIONAL: `extend_right` maximum 2k, defaults 0`
     ///OPTIONAL: `extend_up` maximum 2k, defaults 0`
     ///OPTIONAL: `extend_bottom` maximum 2k, defaults 0`
-    func unCropImageRequest(apiKey: String, image: UIImage, leftExtend: String = "0", topExtend: String = "0", rightExtend: String = "0", bottomExtend: String = "0", completion: @escaping (_ success: Bool, _ message: String?, _ imageData: UIImage?) -> Void) {
+    public func unCropImageRequest(apiKey: String, image: UIImage, leftExtend: String = "0", topExtend: String = "0", rightExtend: String = "0", bottomExtend: String = "0", completion: @escaping (_ success: Bool, _ message: String?, _ imageData: UIImage?) -> Void) {
         
         let imageData = image.jpegData(compressionQuality: 0.9)!
         let leftExtend = leftExtend.data(using: .utf8)

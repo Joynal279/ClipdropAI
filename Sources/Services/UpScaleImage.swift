@@ -14,7 +14,7 @@ extension ClipDrop {
     ///max file size 30 Mb`
     ///_`target_width: Integer between 1 & 4096`
     ///`target_height: Integer between 1 & 4096
-    func upScallingImageRequest(apiKey: String, image: UIImage, width: String, height: String, completion: @escaping (_ success: Bool, _ message: String?, _ imageData: UIImage?) -> Void) {
+    public func upScallingImageRequest(apiKey: String, image: UIImage, width: String, height: String, completion: @escaping (_ success: Bool, _ message: String?, _ imageData: UIImage?) -> Void) {
         
         let imageData = image.jpegData(compressionQuality: 0.9)!
         let width = width.data(using: .utf8)

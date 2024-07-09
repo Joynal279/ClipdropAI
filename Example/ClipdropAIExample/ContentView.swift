@@ -30,6 +30,22 @@ struct ContentView: View {
 extension ContentView {
     private func getCleanUpImage(){
         if let originalImage = originalImage, let maskImage = maskImage {
+            ClipDrop.shared.cleanUpImageRequest(
+                apiKey: apiKey,
+                image: originalImage,
+                mask: maskImage)
+            { success, message, imageData in
+                if success { self.processedImage = imageData }
+                else{ print(message as Any) }
+            }
+        }
+    }
+}
+
+//MARK: - IN PAINTING IMAGE
+extension ContentView {
+    private func getInPaintingImage(){
+        if let originalImage = originalImage, let maskImage = maskImage {
             ClipDrop.shared.paintImageRequest(
                 apiKey: apiKey,
                 image: originalImage,
@@ -43,14 +59,19 @@ extension ContentView {
     }
 }
 
-//MARK: - IN PAINTING IMAGE
-extension ContentView {
-    
-}
-
 //MARK: - RE-IMAGINE IMAGE
 extension ContentView {
-    
+    private func getReImagineImage(){
+        if let originalImage = originalImage {
+            ClipDrop.shared.reImagineImage(
+                apiKey: apiKey,
+                image: originalImage)
+            { success, message, imageData in
+                if success { self.processedImage = imageData }
+                else{ print(message as Any) }
+            }
+        }
+    }
 }
 
 //MARK: - REMOVE BACKGROUND IMAGE

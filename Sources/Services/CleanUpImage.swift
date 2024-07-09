@@ -15,7 +15,7 @@ extension ClipDrop {
     ///2. MASK_FILE: - same as originale image_file (PNG)`
     ///mask_file should be BLACK & WHITE  with no gray color. Black color will keep pixels & white will clean up
     ///for get better result mask size will be big.
-    func cleanUpImageRequest(apiKey: String, image: UIImage, mask: UIImage, completion: @escaping (_ success: Bool, _ message: String?, _ imageData: UIImage?) -> Void) {
+    public func cleanUpImageRequest(apiKey: String, image: UIImage, mask: UIImage, completion: @escaping (_ success: Bool, _ message: String?, _ imageData: UIImage?) -> Void) {
         
         let imageData = image.jpegData(compressionQuality: 0.9)!
         let maskData = mask.jpegData(compressionQuality: 0.9)!
