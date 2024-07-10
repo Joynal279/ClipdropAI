@@ -26,7 +26,7 @@ Once you have your Swift package set up, adding ToastAlert as a dependency is as
 Language: SwiftUI
 iOS Version: 14.0 or later
 dependencies: [
-    .package(url: "https://github.com/Joynal279/ToastAlertSwiftPackage.git")
+    .package(url: "https://github.com/Joynal279/ClipdropAI.git")
 ]
 ```
 
@@ -35,54 +35,28 @@ dependencies: [
 First thing is to import the package. See the Installation instructions on how to add the swift package manager to your project.
 
 ```swift
-import ToastAlertSwiftPackage
+import ClipdropAI
 ```
 
-### Write code for Toast Message
+Once imported ClipdropAI, now you can write code for editing message
 
-Once imported ToastAlertSwiftPackage, now you can write code for toast message
-
+### CLEAN UP IMAGE
 ```swift
-import SwiftUI
-import ToastAlertSwiftPackage
-
-//MARK: - ContentView
-struct ContentView: View {
-    
-    /// `Properties`
-    @State private var toast: ToastView? = nil
-    
-    var body: some View {
-        ZStack {
-            VStack {
-                
-                Button("Show Toast") { /// `Toast button`
-                    toast = ToastView(type: .success, title: "Success", message: "This is success message", duration: 3.0)
-                    //toast = CustomToast(type: .error, title: "Error", message: "This is error message", duration: 5.0)
-                    //toast = CustomToast(type: .info, title: "Info", message: "This is info message", duration: 3.0)
-                    //toast = CustomToast(type: .warning, title: "Warning", message: "This is warning message")
-                }
-                .buttonStyle(.borderedProminent)
-                
-            }//: end VStack
-            .padding()
+//MARK: - CLEAN UP IMAGE
+extension ContentView {
+    private func getCleanUpImage(){
+        if let originalImage = originalImage, let maskImage = maskImage {
+            ClipDrop.shared.cleanUpImageRequest(
+                apiKey: apiKey,
+                image: originalImage,
+                mask: maskImage)
+            { success, message, imageData in
+                if success { self.processedImage = imageData }
+                else{ print(message as Any) }
+            }
         }
-        .toastView(toast: $toast)
-        
     }
 }
-```
-
-Here you can show toast message 4 way. There are 5 parameter where you can modify each others:
-1. type
-2. title
-3. message
-4. duration
-5. yOffset ///Default set -30
-
-### Show Success toast
-```swift
-toast = ToastView(type: .success, title: "Success", message: "This is success message", duration: 3.0)
 ```
 
 ### Show Error toast
