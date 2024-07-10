@@ -38,11 +38,16 @@ First thing is to import the package. See the Installation instructions on how t
 import ClipdropAI
 ```
 
-Once imported ClipdropAI, now you can write code for editing message
+Once imported ClipdropAI, now you can write code for editing photos
 
 ### CLEAN UP IMAGE
 ```swift
 //MARK: - CLEAN UP IMAGE
+    ///`1` IMAGE_FILE: - maximum resolution 16 megapixels (JPG OR PNG)
+    ///max file size 30 Mb
+    ///2. MASK_FILE: - same as originale image_file (PNG)`
+    ///mask_file should be BLACK & WHITE  with no gray color. Black color will keep pixels & white will clean up
+    ///for get better result mask size will be big.
 extension ContentView {
     private func getCleanUpImage(){
         if let originalImage = originalImage, let maskImage = maskImage {
