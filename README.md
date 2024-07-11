@@ -35,7 +35,7 @@ dependencies: [
 First thing is to import the package. See the Installation instructions on how to add the swift package manager to your project.
 
 ```swift
-import ```ClipdropAI```
+import `ClipdropAI`
 ```
 
 Once imported ClipdropAI, now you can write code for editing photos
