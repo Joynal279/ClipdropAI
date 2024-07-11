@@ -173,34 +173,94 @@ extension ContentView {
 }
 ```
 
-Here you can show alert message 2 way. There are 2 parameter where you can modify each others:
-1. title
-2. message
-
-### Show one button alert
+### SKETCH TO IMAGE
 ```swift
-CustomAlert(presentAlert: $presentAlert, alertType: .constant(.oneButton(title: "Do you want to delete?", message: "If you delete this file then you won’t please again check everything"))){
-    withAnimation{
-        presentAlert.toggle()
-    }
-    } rightButtonAction: {
-        withAnimation{
-    presentAlert.toggle()
+//MARK: - SKETCH TO IMAGE
+    ///`1` IMAGE_FILE: - (JPEG , WEBFILE, OR PNG)
+    ///with maximum width & height of 1024 pixels
+    ///PROMPT required for content generate
+    ///where Max length will be 5000 characteres
+extension ContentView {
+    private func getSketchToImage(){
+        if let originalImage = originalImage {
+            ClipDrop.shared.sketchToImageRequest(
+                apiKey: apiKey,
+                image: originalImage,
+                text: "YOUR_PROMPT_HERE")
+            { success, message, imageData in
+                if success { self.processedImage = imageData }
+                else{ print(message as Any) }
+            }
         }
     }
+}
 ```
 
-### Show two button alert
+### TEXT TO IMAGE
 ```swift
-CustomAlert(presentAlert: $presentAlert, alertType: .constant(.twoButton(title: "Do you want to delete?", message: "If you delete this file then you won’t please again check everything"))){
-    withAnimation{
-        presentAlert.toggle()
-    }
-    } rightButtonAction: {
-        withAnimation{
-    presentAlert.toggle()
+//MARK: - TEXT TO IMAGE
+    ///PROMPT required for content generate
+    ///where Max length will be 1000 characteres
+    ///Response image will be 1024*1024 pixels dimensions*
+extension ContentView {
+    private func getTextToImage(){
+        ClipDrop.shared.textToImageRequest(
+            apiKey: apiKey,
+            text: "YOUR_PROMPT_HERE")
+        { success, message, imageData in
+            if success { self.processedImage = imageData }
+            else{ print(message as Any) }
         }
     }
+}
+```
+
+### UN-CROP IMAGE
+```swift
+//MARK: - UN-CROP IMAGE
+    ///`1` IMAGE_FILE`: - maximum resolution 10 megapixels (JPG OR PNG, Web File)
+    ///max file size 30 Mb
+    ///_OPTIONAL: `extend_left` maximum 2k, defaults 0`
+    ///OPTIONAL: `extend_right` maximum 2k, defaults 0`
+    ///OPTIONAL: `extend_up` maximum 2k, defaults 0`
+    ///OPTIONAL: `extend_bottom` maximum 2k, defaults 0`
+extension ContentView {
+    private func getUnCropImage(){
+        if let originalImage = originalImage {
+            ClipDrop.shared.unCropImageRequest(
+                apiKey: apiKey,
+                image: originalImage)
+            { success, message, imageData in
+                if success { self.processedImage = imageData }
+                else{ print(message as Any) }
+            }
+        }
+    }
+}
+```
+
+### UP-SCALLING IMAGE
+```swift
+//MARK: - UP-SCALLING IMAGE
+    ///`1` IMAGE_FILE`: - maximum resolution 16 megapixels (JPG OR PNG, Web File)
+    ///max file size 30 Mb`
+    ///_`target_width: Integer between 1 & 4096`
+    ///`target_height: Integer between 1 & 4096
+extension ContentView {
+    private func getUpScaleImage(){
+        if let originalImage = originalImage {
+            ClipDrop.shared.upScallingImageRequest(
+                apiKey: apiKey,
+                image: originalImage,
+                width: "50",
+                height: 50)
+            { success, message, imageData in
+                if success { self.processedImage = imageData }
+                else{ print(message as Any) }
+            }
+        }
+    }
+}
 ```
 
  
