@@ -64,69 +64,111 @@ extension ContentView {
 }
 ```
 
-### Show Error toast
+### IN PAINTING IMAGE
 ```swift
-toast = ToastView(type: .error, title: "Error", message: "This is error message", duration: 3.0)
-```
-
-### Show Info toast
-```swift
-toast = ToastView(type: .info, title: "Info", message: "This is info message", duration: 3.0)
-```
-
-### Show Warning toast
-```swift
-toast = ToastView(type: .warning, title: "Warning", message: "This is warning message", duration: 3.0)
-```
-
-### Show toast without title and set yOffset
-```swift
-toast = ToastView(type: .success, title: "", message: "This is warning message", duration: 3.0, yOffset: -50)
-```
-
-### Write code for Alert Message
-
-Once imported ToastAlertSwiftPackage, now you can write code for `alert` message
-
-```swift
-import SwiftUI
-import ToastAlertSwiftPackage
-
-//MARK: - ContentView
-struct ContentView: View {
-    
-    /// `Properties`
-    @State private var presentAlert: Bool = false
-    
-    var body: some View {
-        ZStack {
-            VStack {
-                
-                Button("Show Alert") { /// `Alert button`
-                    presentAlert = true
-                }
-                .buttonStyle(.borderedProminent)
-                
-            }//: end VStack
-            .padding()
-            
-            /// `Present Alert`
-            if presentAlert{
-                //CustomAlert(presentAlert: $presentAlert, alertType: .constant(.oneButton(title: "Do you want to delete?", message: "If you delete this file then you won’t please again check everything"))){ withAnimation{  presentAlert.toggle() }
-                //} rightButtonAction: { withAnimation{ presentAlert.toggle() } }
-                
-                CustomAlert(presentAlert: $presentAlert, alertType: .constant(.twoButton(title: "Do you want to delete?", message: "If you delete this file then you won’t please again check everything"))){
-                    withAnimation{
-                        presentAlert.toggle()
-                    }
-                } rightButtonAction: {
-                    withAnimation{
-                        presentAlert.toggle()
-                    }
-                }
-            }//: End present alert
+//MARK: - IN PAINTING IMAGE
+    ///`1` IMAGE_FILE: - maximum resolution 10 megapixels (JPG OR PNG)
+    ///max file size 30 Mb
+    ///2. MASK_FILE: - same as originale image_file (PNG)`
+    ///mask_file should be BLACK & WHITE  with no gray color. Black color will keep pixels & white will clean up
+    ///`text_prompt` text field describing what you want to put in the mask image
+    ///for get better result mask size will be big.
+extension ContentView {
+    private func getInPaintingImage(){
+        if let originalImage = originalImage, let maskImage = maskImage {
+            ClipDrop.shared.paintImageRequest(
+                apiKey: apiKey,
+                image: originalImage,
+                mask: maskImage,
+                text: "A woman with a blue color shari")
+            { success, message, imageData in
+                if success { self.processedImage = imageData }
+                else{ print(message as Any) }
+            }
         }
-        
+    }
+}
+```
+
+### RE-IMAGINE IMAGE
+```swift
+//MARK: - RE-IMAGINE IMAGE
+    ///`1` IMAGE_FILE: - (JPEG , WEBFILE, OR PNG)
+    ///with maximum width & height of 1024 pixels
+extension ContentView {
+    private func getReImagineImage(){
+        if let originalImage = originalImage {
+            ClipDrop.shared.reImagineImage(
+                apiKey: apiKey,
+                image: originalImage)
+            { success, message, imageData in
+                if success { self.processedImage = imageData }
+                else{ print(message as Any) }
+            }
+        }
+    }
+}
+```
+
+### REMOVE BACKGROUND IMAGE
+```swift
+//MARK: - REMOVE BACKGROUND IMAGE
+    ///`1` IMAGE_FILE: - maximum resolution 25 megapixels (JPEG , WEBFILE, OR PNG)
+    ///Max file size 30 Mb
+    ///with maximum width & height of 1024 pixels
+extension ContentView {
+    private func getRemoveBgImage(){
+        if let originalImage = originalImage {
+            ClipDrop.shared.removeBGRequest(
+                apiKey: apiKey,
+                image: originalImage)
+            { success, message, imageData in
+                if success { self.processedImage = imageData }
+                else{ print(message as Any) }
+            }
+        }
+    }
+}
+```
+
+### REMOVE TEXT IMAGE
+```swift
+//MARK: - REMOVE TEXT IMAGE
+    ///`1` IMAGE_FILE: - maximum resolution 16 megapixels (JPG OR PNG)
+    ///max file size 30 Mb
+extension ContentView {
+    private func getRemoveTextImage(){
+        if let originalImage = originalImage {
+            ClipDrop.shared.removeBGRequest(
+                apiKey: apiKey,
+                image: originalImage)
+            { success, message, imageData in
+                if success { self.processedImage = imageData }
+                else{ print(message as Any) }
+            }
+        }
+    }
+}
+```
+
+### REPLACE BACKGROUND IMAGE
+```swift
+//MARK: - REPLACE BACKGROUND IMAGE
+    ///`1` IMAGE_FILE: - (JPG , WEBP FILE, OR PNG)
+    ///with maximum width & height of 2048 pixels
+    ///Max file size 20 Mb
+extension ContentView {
+    private func getReplaceBgImage(){
+        if let originalImage = originalImage {
+            ClipDrop.shared.replaceBGRequest(
+                apiKey: apiKey,
+                image: originalImage,
+                text: "YOUR_PROMPT_HERE")
+            { success, message, imageData in
+                if success { self.processedImage = imageData }
+                else{ print(message as Any) }
+            }
+        }
     }
 }
 ```
