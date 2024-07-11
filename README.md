@@ -1,9 +1,5 @@
 # ClipdropAI
 
-![Toast And Alert](https://github.com/Joynal279/ToastAlertSwiftPackage/assets/44470728/8d49e3db-417a-4775-989e-bc86adfb363a)
-
-
-
 ## Features
 
 - Cleanup Image
